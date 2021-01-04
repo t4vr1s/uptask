@@ -19,11 +19,10 @@ html(lang="cl")
         .panel.lista-proyectos
           h2 Proyectos
           ul#proyectos.proyectos
-            li
-              a(href="#") Diseño de tienda virtual
-            li
-              a(href="#") Diseño de nuevo blog
-            li
-              a(href="#") Diseño de logotipo
+            if(proyectos.length)
+              each proyecto in proyectos
+                li
+                  a(href=`/proyectos/${proyecto.url}`)= proyecto.nombre
 
       block contenido
+      pre= vardump(proyectos)

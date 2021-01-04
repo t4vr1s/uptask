@@ -4,6 +4,9 @@ const app = express();
 const routes = require('./routes');
 const path = require('path');
 
+// helper vardump
+const { vardump } = require('./helpers/vardump');
+
 // crear la conexion a la db
 const db = require('./config/db');
 
@@ -22,6 +25,12 @@ app.set('view engine', 'pug');
 
 // añadir las vistas
 app.set('views', path.join(__dirname, './views'));
+
+// pasar vardump a cualquier lugar de la aplicación
+app.use((req, res, next) => {
+  res.locals.vardump = vardump;
+  next();
+});
 
 // habilitar lectura de formularios
 app.use(express.urlencoded({ extended: true }));

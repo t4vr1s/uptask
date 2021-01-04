@@ -21,7 +21,6 @@ const Proyectos = db.define(
   {
     hooks: {
       beforeCreate(proyecto) {
-        console.log(proyecto);
         const newUrl = slug(proyecto.nombre).toLowerCase();
         // const newUrl = `${slug(nombre).toLowerCase()}-${new Date().getMilliseconds()}`;
         proyecto.url = `${newUrl}-${shortid.generate()}`;
