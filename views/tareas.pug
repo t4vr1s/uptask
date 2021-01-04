@@ -2,4 +2,11 @@ extends layout
 
 block contenido
   .contenido-principal
-    h1 #{nombrePagina}
+    h1 #{nombrePagina} - #{proyecto.nombre}
+
+    //- TODO: formulario
+    //- TODO: pendientes
+    //- acciones
+    .contenedor-acciones
+      a.boton(href=`/proyecto/editar/${proyecto.id}`) Editar Proyecto
+      button.boton.eliminar#elimina-proyecto(type="button") Eliminar Proyecto

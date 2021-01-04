@@ -37,22 +37,26 @@ exports.nuevoProyecto = async (req, res = response) => {
       proyectos,
     });
   } else {
-    const proyecto = Proyectos.create({ nombre });
+    await Proyectos.create({ nombre });
 
     res.redirect('/');
   }
 };
 
 exports.proyectoPorUrl = async (req = request, res = response, next) => {
-  const proyectos = await Proyectos.findAll();
+  const proyectosPromise = Proyectos.findAll();
 
-  const url = req.params.url;
-
-  const proyecto = await Proyectos.findOne({
+  const { url } = req.params;
+  const proyectoPromise = Proyectos.findOne({
     where: {
       url,
     },
   });
+
+  const [proyectos, proyecto] = await Promise.all([
+    proyectosPromise,
+    proyectoPromise,
+  ]);
 
   if (!proyecto) {
     return next();
@@ -64,4 +68,59 @@ exports.proyectoPorUrl = async (req = request, res = response, next) => {
     proyecto,
     proyectos,
   });
+};
+
+exports.formularioEditar = async (req, res = response) => {
+  const proyectosPromise = Proyectos.findAll();
+
+  const { id } = req.params;
+  const proyectoPromise = Proyectos.findOne({
+    where: {
+      id,
+    },
+  });
+
+  const [proyectos, proyecto] = await Promise.all([
+    proyectosPromise,
+    proyectoPromise,
+  ]);
+
+  res.render('nuevoProyecto', {
+    nombrePagina: 'Editar Proyecto',
+    proyectos,
+    proyecto,
+  });
+};
+
+exports.editarProyecto = async (req, res) => {
+  const proyectos = await Proyectos.findAll();
+
+  // validar datos en el input
+  const { nombre } = req.body;
+
+  let errores = [];
+  if (!nombre) {
+    errores.push({ texto: 'agrega un nombra al proyecto' });
+  }
+
+  if (errores.length > 0) {
+    res.render('nuevoProyecto', {
+      nombrePagina: 'Nuevo Proyecto',
+      errores,
+      proyectos,
+    });
+  } else {
+    await Proyectos.update(
+      {
+        nombre,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+
+    res.redirect('/');
+  }
 };

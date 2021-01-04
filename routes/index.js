@@ -6,6 +6,8 @@ const {
   formularioProyecto,
   nuevoProyecto,
   proyectoPorUrl,
+  formularioEditar,
+  editarProyecto,
 } = require('../controllers/proyectosController');
 
 module.exports = function () {
@@ -21,6 +23,15 @@ module.exports = function () {
   );
   // listar proyecto
   router.get('/proyectos/:url', proyectoPorUrl);
+
+  // editar proyecto
+  router.get('/proyecto/editar/:id', formularioEditar);
+
+  router.post(
+    '/nuevo-proyecto/:id',
+    body('nombre').notEmpty().trim().escape(),
+    editarProyecto
+  );
 
   return router;
 };
