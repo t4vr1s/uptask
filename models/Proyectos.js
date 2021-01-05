@@ -12,10 +12,10 @@ const Proyectos = db.define(
       autoIncrement: true,
     },
     nombre: {
-      type: DataTypes.STRING(80),
+      type: DataTypes.STRING(100),
     },
     url: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
     },
   },
   {
