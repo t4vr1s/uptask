@@ -4,19 +4,30 @@
   "description": "Proyecto UpTask con node y mvc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js"
+    "dev": "nodemon ./index.js",
+    "start": "concurrently \"npm run dev\" \"npm run watch\"",
+    "watch": "webpack -w --mode development"
   },
   "author": "Eduardo Escobar",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "colors": "^1.4.0",
+    "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "express-validator": "^6.9.0",
     "mysql2": "^2.2.5",
     "pug": "^3.0.0",
     "sequelize": "^6.3.5",
     "shortid": "^2.2.16",
-    "slug": "^4.0.2"
+    "slug": "^4.0.2",
+    "sweetalert2": "^10.12.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
   }
 }

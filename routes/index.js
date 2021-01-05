@@ -8,6 +8,7 @@ const {
   proyectoPorUrl,
   formularioEditar,
   editarProyecto,
+  eliminarProyecto,
 } = require('../controllers/proyectosController');
 
 module.exports = function () {
@@ -32,6 +33,9 @@ module.exports = function () {
     body('nombre').notEmpty().trim().escape(),
     editarProyecto
   );
+
+  // eliminar un proyecto
+  router.delete('/proyectos/:url', eliminarProyecto);
 
   return router;
 };
