@@ -8,8 +8,10 @@ block contenido
       .campo
         label(for="tarea") Tarea:
         input.nombre-tarea(type="text" name="tarea" placeholder="Nombre Tarea")
+      
       .campo.enviar
         input.boton.nueba-tarea(type="submit" value="Agregar")
+
     //- TODO: pendientes
     .listado-pendientes
       ul
@@ -25,6 +27,12 @@ block contenido
                 i.fas.fa-trash
         else 
           p No hay tareas en este proyecto
+
+    .avance
+      h2 Avance del Proyecto
+      #barra-avance.barra-avance
+        #porcentaje.porcentaje
+
     //- pre= vardump(tareas)
     //- acciones
     .contenedor-acciones

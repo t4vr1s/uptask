@@ -45,3 +45,13 @@ exports.cambiarEstadoTarea = async (req, res = response) => {
 
   res.send('actualizado');
 };
+
+exports.eliminarTarea = async (req, res, next) => {
+  const { id } = req.params;
+
+  const resultado = await Tareas.destroy({ where: { id } });
+
+  if (!resultado) next();
+
+  res.send('Su tarea ha sido eliminada');
+};
