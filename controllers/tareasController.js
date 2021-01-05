@@ -20,9 +20,28 @@ exports.crearTarea = async (req, res = response, next) => {
     proyectoId: id,
   });
 
-  if (!respuesta) {
-    return next();
-  }
+  if (!respuesta) return next();
 
   res.redirect(`/proyectos/${url}`);
+};
+
+exports.cambiarEstadoTarea = async (req, res = response) => {
+  const { id } = req.params;
+  const tarea = await Tareas.findOne({
+    where: {
+      id,
+    },
+  });
+
+  let estado = false;
+  if (tarea.estado === estado) {
+    estado = true;
+  }
+  tarea.estado = estado;
+
+  const resultado = await tarea.save();
+
+  if (!resultado) next();
+
+  res.send('actualizado');
 };

@@ -4,7 +4,6 @@ block contenido
   .contenido-principal
     h1 #{nombrePagina} - #{proyecto.nombre}
 
-    //- TODO: formulario
     form.agregar-tarea(action=`/proyectos/${proyecto.url}` method="post")
       .campo
         label(for="tarea") Tarea:
@@ -12,6 +11,21 @@ block contenido
       .campo.enviar
         input.boton.nueba-tarea(type="submit" value="Agregar")
     //- TODO: pendientes
+    .listado-pendientes
+      ul
+        if tareas.length
+          each tarea in tareas
+            li.tarea(data-tarea=tarea.id)
+              p= tarea.nombre
+              .acciones
+                if tarea.estado 
+                  i.far.fa-check-circle.completo
+                else  
+                  i.far.fa-check-circle
+                i.fas.fa-trash
+        else 
+          p No hay tareas en este proyecto
+    //- pre= vardump(tareas)
     //- acciones
     .contenedor-acciones
       a.boton(href=`/proyecto/editar/${proyecto.id}`) Editar Proyecto
