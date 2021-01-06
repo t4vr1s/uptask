@@ -5,7 +5,6 @@ block contenido
   .contenido-principal
     h1= nombrePagina
 
-    pre= vardump(proyecto)
     if errores
       each error in errores
         .error.alerta= error.texto
