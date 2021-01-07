@@ -6,13 +6,7 @@ html(lang="en")
     .contenedor-formulario
       h1 Crea tu cuenta en UpTask
 
-      if locals.mensajes
-        .alertas
-          each categoria in Object.keys(locals.mensajes)
-            each error in mensajes[categoria]
-              .alerta(class=`${categoria}`)
-                p= error
-        
+      include partials/mensajes        
       
       form#fomulario.caja.caja-login(method="post" action="/crear-cuenta")
         .campo

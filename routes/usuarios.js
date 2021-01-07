@@ -1,23 +1,20 @@
 const { Router } = require('express');
-const {
-  autenticarUsuario,
-  cerrarSesion,
-} = require('../controllers/authController');
+const router = Router();
+
 const {
   formCrearCuenta,
   crearCuenta,
   formIniciarSesion,
+  formReestablecerPassword,
+  confirmarCuenta,
 } = require('../controllers/usuariosController');
-const router = Router();
 
 router.get('/crear-cuenta', formCrearCuenta);
-
 router.post('/crear-cuenta', crearCuenta);
+router.get('/confirmar/:correo', confirmarCuenta);
 
 router.get('/iniciar-sesion', formIniciarSesion);
 
-router.post('/iniciar-sesion', autenticarUsuario);
-
-router.get('/cerrar-sesion', cerrarSesion);
+router.get('/reestablecer', formReestablecerPassword);
 
 module.exports = router;

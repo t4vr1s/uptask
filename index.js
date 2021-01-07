@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('./config/passport');
+require('dotenv').config({ path: 'variables.env' });
 
 // helper vardump
 const { vardump } = require('./helpers/vardump');
@@ -55,6 +56,10 @@ app.use((req, res, next) => {
 // añadir las rutas
 app.use(require('./routes/index'));
 
-app.listen(3000, () => {
-  console.log('Escuchando en el puerto 3000'.green);
+// servidor y puerto
+const port = process.env.PORT || 3000;
+const host = process.env.HOST || 'localhost';
+
+app.listen(port, host, () => {
+  console.log('escuchando puerto: 3000'.green);
 });

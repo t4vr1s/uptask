@@ -1,4 +1,5 @@
 mixin crearProyecto(proyecto = {})
+
   form.agregar-proyecto(action=`/nuevo-proyecto/${proyecto.id || ''}` method="POST")
         .campo
           label(for="nombre") Nombre Proyecto:
