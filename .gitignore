@@ -1,3 +1,4 @@
 node_modules
 DB.txt
 *.backup
+variables.env
