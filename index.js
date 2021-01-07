@@ -57,9 +57,9 @@ app.use((req, res, next) => {
 app.use(require('./routes/index'));
 
 // servidor y puerto
-const port = process.env.PORT || 3000;
+process.env.PORT = process.env.PORT || 3000;
 const host = process.env.HOST || '0.0.0.0';
 
-app.listen(port, host, () => {
+app.listen(process.env.PORT, host, () => {
   console.log('escuchando puerto: 3000'.green);
 });
