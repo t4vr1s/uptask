@@ -11,10 +11,14 @@ html(lang="en")
       form#fomulario.caja.caja-login(method="post" action="/iniciar-sesion")
         .campo
           label(for="email") Email
-          input(type="email" name="email" value= email placeholder="Tu email" required)
+          input(type="email" name="email" id="email" value= email placeholder="Tu email" required)
         .campo
-          label(for="password") Password
-          input(type="password" name="password" value= password placeholder="Tu password" required)
+          label(for="password") Password 
+          input(type="password" name="password" id="password" value= password placeholder="Tu password" required)
+        .campo 
+          label(for="email")  user="eescobar@computin.cl"
+        .campo
+          label(for="password")  pass="123"
         .campo.enviar
           input.boton(type="submit" value="Iniciar Sesión")
         .campo.acciones
